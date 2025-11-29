@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ht">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Non Ou — Sit Pèsonèl</title>
+  <meta name="description" content="Sit pèsonèl Non Ou — devlopè, designer, elatriye." />
+  <style>
+    /* Reset léger */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#f7f8fb;color:#111}
+    a{color:inherit}
+    /* Layout */
+    .container{max-width:920px;margin:36px auto;padding:20px}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+    .avatar{width:86px;height:86px;border-radius:14px;background:linear-gradient(135deg,#e9eefc,#fff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#334}
+    h1{font-size:26px;margin-bottom:4px}
+    p.lead{color:#556;font-size:15px}
+    /* Sections */
+    section{background:#fff;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(10,12,30,0.04);margin-bottom:18px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .skill{padding:10px;border-radius:8px;background:#f2f6ff}
+    /* Portfolio cards */
+    .card{padding:12px;border-radius:10px;border:1px solid #eef2ff}
+    /* Contact form */
+    form{display:grid;gap:8px}
+    input,textarea{padding:10px;border-radius:8px;border:1px solid #dde5ff;font-size:14px}
+    button{padding:10px 14px;border-radius:10px;border:0;background:#2b6df6;color:#fff;font-weight:600;cursor:pointer}
+    footer{font-size:13px;color:#667;text-align:center;margin-top:8px}
+    /* Responsive */
+    @media (max-width:720px){
+      .grid{grid-template-columns:1fr}
+      header{flex-direction:row}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar">NO</div>
+      <div>
+        <h1>Non Ou</h1>
+        <p class="lead">Tit ou — eg. Web dev • Designer • Fotògraf</p>
+      </div>
+    </header>
+
+    <section id="about">
+      <h2>Sou mwen</h2>
+      <p style="margin-top:8px;line-height:1.5">
+        Ekri 2–3 fraz sou ou: ki sa w fè, eksperyans kle, ak kilès w ap chèche travay oswa kolaborasyon avèk yo.
+      </p>
+    </section>
+
+    <section id="skills">
+      <h2>Konpetans</h2>
+      <div class="grid" style="margin-top:10px">
+        <div class="skill">HTML &amp; CSS</div>
+        <div class="skill">JavaScript / React</div>
+        <div class="skill">Design UI/UX</div>
+        <div class="skill">Fotografi / Video</div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <h2>Portfolio</h2>
+      <div style="margin-top:10px" class="grid">
+        <div class="card">
+          <strong>Pwojè 1</strong>
+          <p style="margin-top:6px;font-size:14px">Ti deskripsyon, lyen oswa imaj (ranplase ak pwojè ou).</p>
+        </div>
+        <div class="card">
+          <strong>Pwojè 2</strong>
+          <p style="margin-top:6px;font-size:14px">Ti deskripsyon.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Kontakte m</h2>
+      <form id="contactForm" onsubmit="handleSubmit(event)" style="margin-top:10px">
+        <input id="name" type="text" placeholder="Non ou" required />
+        <input id="email" type="email" placeholder="Imèl ou" required />
+        <textarea id="message" rows="5" placeholder="Mesaj pou mwen..." required></textarea>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="submit">Voye</button>
+          <a href="mailto:email@ou.com" style="display:inline-flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid #dde5ff;text-decoration:none">Imèl dirèk</a>
+        </div>
+        <p id="status" style="margin-top:8px;font-size:13px;color:#3a7"> </p>
+      </form>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Non Ou — Tout dwa rezève.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      // Pou demaraj rapid: nou kreye mailto link (pa bezwen backend)
+      const subject = encodeURIComponent('Mesaj soti nan sit ou: ' + name);
+      const body = encodeURIComponent('Non: ' + name + '\\nImèl: ' + email + '\\n\\n' + msg);
+      const mailto = 'mailto:email@ou.com?subject=' + subject + '&body=' + body;
+      // Ouvri app imèl itilizatè a
+      window.location.href = mailto;
+      document.getElementById('status').textContent = 'Ap louvri aplikasyon imèl ou...';
+    }
+  </script>
+</body>
+</html>
